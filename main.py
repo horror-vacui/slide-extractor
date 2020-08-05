@@ -26,6 +26,8 @@ args = vars(parser.parse_args())
 
 class Main:
     slideCounter = 0
+    FrameRatioMin = 1.2
+    FrameRatioMax = 1.8
 
     def __init__(self, debug, vidpath, output, stepSize, progressInterval):
         self.vidpath = vidpath
@@ -61,7 +63,9 @@ class Main:
 
     def onTrigger(self, frame):
         frame = self.cropImage(frame)
-        if frame is not None and self.checkRatio(frame, 1.2, 1.5):
+        #if frame is not None and self.checkRatio(frame, 1.2, 1.5):
+        # zti 20200805: wide screen presentation was not detected
+        if frame is not None and self.checkRatio(frame, self.FrameRatioMin, self.FrameRatioMax): 
             if self.dupeHandler.check(frame):
                 print("Found a new slide!")
             # self.saveSlide(frame)
