@@ -1,3 +1,7 @@
+Changes after fork:
+- slide width/height ratio was extended to allow widescreen presentations. Also the ratio limits are not hardcoded, but class variables are used.
+- A new image/frame will not be compared to every previous frame, but only to the last 5. This way recurring outline/agenda slides, where only the highlight changes, will not be dismissed due to too high resemblance (unless it is not repeated within a few slides). This parameter is also controlled through a variable now.
+
 # Slide Extractor
 A python script designed to extract slides from lecture videos.
 
