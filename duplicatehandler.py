@@ -4,7 +4,7 @@ import cv2
 
 class DuplicateHandler:
     entries = []
-    last_n2compare = 5
+    n2compare = -5  # lets just compare the last 5 slides
 
     def __init__(self, thresh):
         self.threshold = thresh
@@ -14,7 +14,7 @@ class DuplicateHandler:
         # it compares the image to every previous image
         # This way the updated contents/agenda slides will be removed
         # The same slide with different highlights are used in these
-        for i in self.entries[-self.last_n2compare:]: # lets just compare the last 3 slides
+        for i in self.entries[self.n2compare:]: 
             d = self.calcDiff(i, img) # zti: for debugging
             # print(f"The difference btw images is: {d}")
             if d < self.threshold:
